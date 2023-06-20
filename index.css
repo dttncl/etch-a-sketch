@@ -99,12 +99,10 @@ fieldset {
 }
 
 #container > div {
-    width: 31.25px; /*500px / size of sketch*/
-    height: 31.25px;
-    border: 1px solid black;
+    border: 1px solid transparent;
     box-sizing: border-box;
 }
 
 .fill {
-    background-color: #000000;
+    background-color: #D81B60;
 }
