@@ -1,9 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+* {
+    font-family: 'Pacifico', cursive;
+}
+
+body {
+    height: 100vh;
+    background-color: #FFF2F7;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 130px 1fr 50px;
+    grid-template-areas: "header"
+                        "main"
+                        "footer";
+    gap: 30px;
+}
+
+a {
+    color: #FFF2F7;
+    text-decoration: none;
+}
+
+header {
+    grid-area: header;
+}
+
+footer {
+    grid-area: footer;
+    font-size: 20px;
+    background-color: #D81B60;
+    text-align: center;
+    padding: 5px;
+    color: #FFF2F7;
+}
+
+footer > p {
+    margin: 0;
+}
+
+footer img {
+    height: 1.5rem;
+}
+
+h1 {
+    font-size: 80px;
+    margin: 0;
+    color: #D81B60;
+    text-align: center;
+}
+
+legend {
+    font-size: 30px;
+    margin: 0;
+    color: #D81B60;
+}
+
+label {
+    font-size: 20px;
+    margin: 0;
+    color: #880E4F;
+}
+
+input[type="radio"] {
+    height: 20px;
+    width: 20px;
+}
+
+input[type="radio"]:checked {
+    accent-color: #D81B60;
+}
+
+fieldset {
+    border: 3px solid #D81B60;
+    padding: 15px;
+}
+
+.settings {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.canvas {
+    grid-area: main;
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
 #container {
     width: 500px;
     height: 500px;
     display: flex;
     flex-wrap: wrap;
-    border: 5px solid rebeccapurple;
+    border: 5px solid #D81B60;
 }
 
 #container > div {
@@ -11,4 +103,8 @@
     height: 31.25px;
     border: 1px solid black;
     box-sizing: border-box;
+}
+
+.fill {
+    background-color: #000000;
 }
