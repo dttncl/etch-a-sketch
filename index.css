@@ -1,0 +1,14 @@
+#container {
+    width: 500px;
+    height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    border: 5px solid rebeccapurple;
+}
+
+#container > div {
+    width: 31.25px; /*500px / size of sketch*/
+    height: 31.25px;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
