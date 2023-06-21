@@ -1,9 +1,11 @@
 const container = document.querySelector('#container');
 const sizes = document.querySelectorAll('#size > fieldset > input');
+const colors = document.querySelectorAll('#pen > fieldset > input[type="radio"]');
+const picker =  document.querySelector('#pen > fieldset > input[type="color"]');
+const eraser = document.querySelector('#eraser');
+const reset = document.querySelector('#reset');
 
-// default values
-const DEFAULT_COLOR = '#D81B60;';
-
+const DEFAULT_BG = '#FFF2F7';
 // grid sizes
 const GRID_SIZES = {
     NORMAL_GRID : 256,
@@ -12,7 +14,6 @@ const GRID_SIZES = {
 }
 
 createGrid (GRID_SIZES.NORMAL_GRID);
-
 // set grid size
 sizes.forEach(size => size.addEventListener('change', () => {
     if (size.value === 'small') {
@@ -27,7 +28,7 @@ sizes.forEach(size => size.addEventListener('change', () => {
     }
 }));
 
-// create grid
+// function to create grid
 function createGrid (area) {
     console.log(area)
     for (let i = 0; i < area; i++) {
@@ -38,32 +39,63 @@ function createGrid (area) {
     }
 }
 
+// set pen option
+colors.forEach(color => color.addEventListener('change', () => {
+    if (color.value === 'rainbow') {
+        picker.disabled = true;
+    } else if (color.value === 'custom') {
+        picker.disabled = false;
+        picker.addEventListener('change')
+    } 
+}));
+
 // function to fill color
 function addColor(e) {
     e.preventDefault();
-    this.classList.add('fill');
+
+    let penColor;
+    if (picker.disabled) {
+        // generate random colors
+        penColor = "#"+((1<<24)*Math.random()|0).toString(16); 
+    } else {
+        // use chosen color
+        penColor = picker.value;
+    }
+    
+    this.style.backgroundColor = penColor;
 }
 
 // function to start sketching
-function startSketch(e) {
+function startSketch(e) { 
     e.preventDefault();
     const divs = document.querySelectorAll('#container > div');
-    console.log(divs)
-    for (let div of divs) {
-        div.addEventListener('mouseover', addColor)
-    }
+    divs.forEach(div => div.addEventListener('mouseover', addColor));
 }
 
 // function to stop sketching
 function stopSketch(e) {
     e.preventDefault();
     const divs = document.querySelectorAll('#container > div');
-    for (let div of divs) {
-        div.removeEventListener('mouseover', addColor)
-    }
+    divs.forEach(div => div.removeEventListener('mouseover', addColor));
+
 }
 
-const sketch = document.querySelector('#container');
-sketch.addEventListener('mousedown',startSketch);
-sketch.addEventListener('mouseup',stopSketch);
+container.addEventListener('mousedown',startSketch);
+container.addEventListener('mouseup',stopSketch);
 
+// reset button
+reset.addEventListener('click', () => {
+    const divs = document.querySelectorAll('#container > div');
+    divs.forEach(div => div.style.backgroundColor = DEFAULT_BG);
+})
+/*
+// set eraser option
+erasers.forEach(eraser => eraser.addEventListener('change', () => {
+    if (eraser.value === 'eraser') {
+        
+    } else if (eraser.value === 'eraseall') {
+        const divs = document.querySelectorAll('#container > div');
+        divs.forEach(div => div.style.backgroundColor = DEFAULT_BG);
+    } 
+}));
+*/

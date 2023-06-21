@@ -103,6 +103,8 @@ fieldset {
     box-sizing: border-box;
 }
 
+/*
 .fill {
-    background-color: #D81B60;
+    background-color: var(--div-bg-fill);
 }
+*/

@@ -35,7 +35,7 @@
                         <label for="rainbow">Rainbow</label> <br>
                         <input type="radio" id="custom" name="pen" value="custom">
                         <label for="custom">Custom </label>
-                        <input type="color" id="custom" name="pen" value="#ffffff">
+                        <input type="color" id="custom" name="pen" value="#D81B60" disabled>
                     </fieldset>
                 </form>
             </div>
@@ -43,10 +43,8 @@
                 <form id="clear">
                     <fieldset>
                         <legend>Clear Mode</legend>
-                        <input type="radio" id="eraser" name="mode" value="eraser">
-                        <label for="eraser">Eraser</label> <br>
-                        <input type="radio" id="eraseall" name="mode" value="eraseall">
-                        <label for="eraseall">Erase All</label>
+                        <button id="eraser">Eraser</button>
+                        <button type="reset" id="reset">Erase All</button>
                     </fieldset>
                 </form>
             </div>
