@@ -4,14 +4,37 @@ const colors = document.querySelectorAll('#pen > fieldset > input[type="radio"]'
 const picker =  document.querySelector('#pen > fieldset > input[type="color"]');
 const eraser = document.querySelector('#eraser');
 const reset = document.querySelector('#reset');
+const sketch = document.querySelector('#sketch');
 
 const DEFAULT_BG = '#FFF2F7';
-// grid sizes
 const GRID_SIZES = {
     NORMAL_GRID : 256,
     SMALL_GRID : 2500,
     LARGE_GRID : 100
 }
+
+let sketchMode = true;
+let eraseMode = false;
+
+// eraser mode
+eraser.addEventListener('click', (e) => {
+    e.preventDefault();
+    eraseMode = true;
+    sketchMode = false;
+});
+
+// sketch mode
+sketch.addEventListener('click', (e) => {
+    e.preventDefault();
+    sketchMode = true;
+    eraseMode = false;
+});
+
+// reset sketch pad
+reset.addEventListener('click', () => {
+    const divs = document.querySelectorAll('#container > div');
+    divs.forEach(div => div.style.backgroundColor = DEFAULT_BG);
+});
 
 createGrid (GRID_SIZES.NORMAL_GRID);
 // set grid size
@@ -54,12 +77,15 @@ function addColor(e) {
     e.preventDefault();
 
     let penColor;
-    if (picker.disabled) {
+
+    if (picker.disabled && eraseMode === false) {
         // generate random colors
         penColor = "#"+((1<<24)*Math.random()|0).toString(16); 
-    } else {
+    } else if (picker.enabled && eraseMode === false) {
         // use chosen color
         penColor = picker.value;
+    } else if (eraseMode === true) {
+        penColor = DEFAULT_BG;
     }
     
     this.style.backgroundColor = penColor;
@@ -82,20 +108,3 @@ function stopSketch(e) {
 
 container.addEventListener('mousedown',startSketch);
 container.addEventListener('mouseup',stopSketch);
-
-// reset button
-reset.addEventListener('click', () => {
-    const divs = document.querySelectorAll('#container > div');
-    divs.forEach(div => div.style.backgroundColor = DEFAULT_BG);
-})
-/*
-// set eraser option
-erasers.forEach(eraser => eraser.addEventListener('change', () => {
-    if (eraser.value === 'eraser') {
-        
-    } else if (eraser.value === 'eraseall') {
-        const divs = document.querySelectorAll('#container > div');
-        divs.forEach(div => div.style.backgroundColor = DEFAULT_BG);
-    } 
-}));
-*/
