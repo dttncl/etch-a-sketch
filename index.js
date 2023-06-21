@@ -15,12 +15,16 @@ const GRID_SIZES = {
 
 let sketchMode = true;
 let eraseMode = false;
+sketch.classList.add('activeMode');
+eraser.classList.remove('activeMode');
 
 // eraser mode
 eraser.addEventListener('click', (e) => {
     e.preventDefault();
     eraseMode = true;
     sketchMode = false;
+    eraser.classList.add('activeMode');
+    sketch.classList.remove('activeMode');
 });
 
 // sketch mode
@@ -28,6 +32,8 @@ sketch.addEventListener('click', (e) => {
     e.preventDefault();
     sketchMode = true;
     eraseMode = false;
+    sketch.classList.add('activeMode');
+    eraser.classList.remove('activeMode');
 });
 
 // reset sketch pad
@@ -68,7 +74,7 @@ colors.forEach(color => color.addEventListener('change', () => {
         picker.disabled = true;
     } else if (color.value === 'custom') {
         picker.disabled = false;
-        picker.addEventListener('change')
+        picker.addEventListener('change',console.log(picker));
     } 
 }));
 
@@ -78,10 +84,10 @@ function addColor(e) {
 
     let penColor;
 
-    if (picker.disabled && eraseMode === false) {
+    if (picker.disabled && sketchMode === true) {
         // generate random colors
         penColor = "#"+((1<<24)*Math.random()|0).toString(16); 
-    } else if (picker.enabled && eraseMode === false) {
+    } else if (picker.disabled === false && sketchMode === true) {
         // use chosen color
         penColor = picker.value;
     } else if (eraseMode === true) {

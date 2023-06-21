@@ -118,3 +118,14 @@ fieldset {
     gap: 15px;
     flex-wrap: wrap;
 }
+
+#mode > fieldset > button:hover {
+    box-shadow: 4px 4px black;
+    cursor: pointer;
+}
+
+.activeMode {
+    background-color: #D81B60 !important;
+    color: white !important;
+    box-shadow: 4px 4px black;
+}
