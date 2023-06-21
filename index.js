@@ -17,6 +17,7 @@ let sketchMode = true;
 let eraseMode = false;
 sketch.classList.add('activeMode');
 eraser.classList.remove('activeMode');
+createGrid (GRID_SIZES.NORMAL_GRID);
 
 // eraser mode
 eraser.addEventListener('click', (e) => {
@@ -42,8 +43,7 @@ reset.addEventListener('click', () => {
     divs.forEach(div => div.style.backgroundColor = DEFAULT_BG);
 });
 
-createGrid (GRID_SIZES.NORMAL_GRID);
-// set grid size
+// customize grid size
 sizes.forEach(size => size.addEventListener('change', () => {
     if (size.value === 'small') {
         container.innerHTML = '';
