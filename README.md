@@ -2,6 +2,8 @@
 
 Can you handle a virtual canvas? Ready, set, create!
 
+### 💻 [Live Demo](https://dttncl.github.io/etch-a-sketch/)
+
 ### 🕹️ How to Play
 
 1. Open the [game](https://dttncl.github.io/etch-a-sketch/) in your browser
@@ -13,3 +15,8 @@ Can you handle a virtual canvas? Ready, set, create!
 ### 🛠️ Implementation
 This is my take on Etch-A-Sketch with colors resembling the vibrant childhood I had.
 HTML, CSS and JavaScript were used to create the virtual canvas. Sketching was made through DOM EventListeners. 
+
+### 📸 Snapshots
+<img width="500" alt="image" src="https://github.com/dttncl/etch-a-sketch/assets/82695034/0b966fa6-ad56-4386-ac81-e009124513c8">
+<img width="500" alt="image" src="https://github.com/dttncl/etch-a-sketch/assets/82695034/2d90380b-7aac-40f1-b9be-2cab380a413e">
+
